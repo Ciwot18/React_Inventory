@@ -11,7 +11,17 @@ export default function App() {
         <Route index element={<Home/>} />
         <Route path="inventory" element={<Inventory/>} />
         <Route path="admin" element={<Admin/>} />
+        <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
+  )
+}
+
+function NoMatch() {
+  return (
+    <div>
+      <h1>404</h1>
+      <p>Page not found</p>
+    </div>
   )
 }
