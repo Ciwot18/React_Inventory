@@ -1,0 +1,6 @@
+@React_Inventory.Server_HostAddress = http://localhost:5159
+
+GET {{React_Inventory.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
