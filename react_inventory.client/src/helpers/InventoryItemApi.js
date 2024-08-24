@@ -11,7 +11,8 @@ const createInventoryItem = async (inventoryItem) => {
 };
 
 const getInventoryItems = () => {
-    return JSON.parse(localStorage.getItem('inventoryItem'));
+    const inventoryItems = JSON.parse(localStorage.getItem('inventoryItem'));
+    return inventoryItems ? inventoryItems : [];
 };
 
 export { createInventoryItem, getInventoryItems };
