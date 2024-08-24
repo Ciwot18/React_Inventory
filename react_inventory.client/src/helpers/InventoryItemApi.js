@@ -10,4 +10,8 @@ const createInventoryItem = async (inventoryItem) => {
     localStorage.setItem('inventoryItem', JSON.stringify(inventoryItems));
 };
 
-export { createInventoryItem };
+const getInventoryItems = () => {
+    return JSON.parse(localStorage.getItem('inventoryItem'));
+};
+
+export { createInventoryItem, getInventoryItems };
