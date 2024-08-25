@@ -3,6 +3,8 @@ import NavBar from "./components/NavBar";
 import Inventory from "./components/Inventory";
 import Admin from "./components/Admin";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function App() {
   return (
@@ -18,6 +20,12 @@ export default function App() {
 }
 
 function NoMatch() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <div className="grid h-screen place-content-center bg-white px-4">
       <div className="text-center">
