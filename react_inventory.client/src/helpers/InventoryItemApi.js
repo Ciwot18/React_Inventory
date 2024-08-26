@@ -15,4 +15,10 @@ const getInventoryItems = () => {
     return inventoryItems ? inventoryItems : [];
 };
 
-export { createInventoryItem, getInventoryItems };
+const deleteInventoryItem = (idToDelete) => {
+    const inventoryItems = JSON.parse(localStorage.getItem('inventoryItem'));
+    const newInventoryItems = inventoryItems.filter(item => item.id !== idToDelete);
+    localStorage.setItem('inventoryItem', JSON.stringify(newInventoryItems));
+}
+
+export { createInventoryItem, getInventoryItems, deleteInventoryItem };
