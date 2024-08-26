@@ -6,7 +6,7 @@ export default function Home() {
         <section className="bg-white dark:bg-gray-900">
             <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:pt-16 lg:pb-4 lg:px-6">
                 <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                    <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Primo sito di prova con Blazor</h2>
+                    <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Primo sito con ASP.NET e React</h2>
                     <p className="mb-4">
                         Benvenuto! Questo è il mio primo progetto con ASP.NET, un framework che mi
                         permette di utilizzare C# per creare un API per rendere una app React interattiva.<br/>
