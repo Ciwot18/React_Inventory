@@ -56,7 +56,7 @@ export default function Home() {
                 </div>
                 ) : (
                     <div className="max-w-screen-lg">
-                        <div className="py-6 dark:bg-gray-100 dark:text-gray-900">
+                        <div className="py-6 dark:bg-gray-900 dark:text-white">
                             <div className="container mx-auto flex flex-col justify-around p-4 text-center md:p-10 lg:flex-row">
                                 <div className="flex flex-col justify-center lg:text-left">
                                     <p className="mb-1 text-sm font-medium tracking-widest uppercase dark:text-violet-600">Bentornato {user.displayName.split(" ")[0]}</p>

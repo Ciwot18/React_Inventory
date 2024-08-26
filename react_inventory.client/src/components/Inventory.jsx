@@ -34,7 +34,7 @@ export default function Inventory() {
     }
 
     return (
-        <div className="bg-gray-100 px-4 min-h-[calc(100vh-64px)]">
+        <div className="bg-gray-100 dark:bg-gray-700 dark:text-white px-4 min-h-[calc(100vh-64px)]">
             <h2 className="text-center pt-2 mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Elementi presenti nel tuo inventario</h2>
             <section className="bg-white dark:bg-gray-900 px-4 max-h-[calc(0.75*(100vh-64px))] overflow-y-auto">
                 <div className="gap-16 items-center py-2 px-4 mx-auto max-w-screen-xl lg:pb-4 lg:px-6">

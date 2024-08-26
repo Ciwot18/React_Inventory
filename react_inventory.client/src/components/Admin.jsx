@@ -69,7 +69,7 @@ export default function Admin() {
                                         <label key={index} className="cursor-pointer">
                                             <input type="radio" name="image" value={image.title} className="sr-only" {...register('category', { required: true })} />
                                             <div className="flex flex-col items-center">
-                                                <img width="50" height="50" src={image.href} alt={image.title} className={"w-12 h-12 rounded-full hover:scale-110 " + (watch("category") === image.title ? "border-2 border-gray-800 scale-110" : "")} />
+                                                <img width="50" height="50" src={image.href} alt={image.title} className={"w-12 h-12 dark:bg-gray-50 rounded-full hover:scale-110 " + (watch("category") === image.title ? "border-2 border-gray-800 dark:border-blue-400 scale-110" : "")} />
                                                 <span className="text-xs font-medium text-gray-900 dark:text-white">{image.title}</span>
                                             </div>
                                         </label>
