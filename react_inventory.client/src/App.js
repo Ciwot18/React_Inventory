@@ -2,24 +2,26 @@ import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Inventory from "./components/Inventory";
 import Admin from "./components/Admin";
-import { Link, Outlet, Route, Routes } from "react-router-dom";
+import { Link, Outlet, Route, Routes, Navigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { firebaseAuth } from "./helpers/firebase";
 
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<><NavBar/><Outlet/></>}>
         <Route index element={<Home/>} />
-        <Route path="inventory" element={<Inventory/>} />
-        <Route path="admin" element={<Admin/>} />
+        <Route path="inventory" element={<PrivateRoute><Inventory/></PrivateRoute>} />
+        <Route path="admin" element={<PrivateRoute><Admin/></PrivateRoute>} />
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
   )
 }
 
-function NoMatch() {
+const NoMatch = () => {
   const location = useLocation();
 
   useEffect(() => {
@@ -38,4 +40,9 @@ function NoMatch() {
       </div>
     </div>
   )
+}
+
+const PrivateRoute = ({ children }) => {
+  const [user] = useAuthState(firebaseAuth);
+  return user ? children : <Navigate to="/" />;
 }
