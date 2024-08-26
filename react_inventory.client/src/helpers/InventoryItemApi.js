@@ -10,8 +10,9 @@ const createInventoryItem = async (inventoryItem) => {
     localStorage.setItem('inventoryItem', JSON.stringify(inventoryItems));
 };
 
-const getInventoryItems = () => {
+const getInventoryItems = async () => {
     const inventoryItems = JSON.parse(localStorage.getItem('inventoryItem'));
+    await new Promise(resolve => setTimeout(resolve, 1500));
     return inventoryItems ? inventoryItems : [];
 };
 
