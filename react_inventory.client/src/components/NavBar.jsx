@@ -2,6 +2,8 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink } from 'react-router-dom';
 import GatoPanzon from "./Shared/gato-panzon.jfif";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { firebaseAuth, signInWithGoogle, signOut } from "../helpers/firebase";
 
 const navigation = [
   { name: 'Dashboard', href: '/', current: true },
@@ -14,6 +16,8 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const [user] = useAuthState(firebaseAuth);
+
   return (
     <>
     <Disclosure as="nav" className="bg-gray-800">
@@ -52,6 +56,9 @@ export default function NavBar() {
             </button>
 
             {/* Profile dropdown */}
+            { !user ? (
+              <button type="button" onClick={signInWithGoogle} className="mx-1 bg-gray-100 text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</button>
+            ) : (       
             <Menu as="div" className="relative ml-3">
               <div>
                 <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -68,10 +75,11 @@ export default function NavBar() {
                   <DisclosureButton key={"Settings"} as={NavLink} to={"/settings"}className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">Settings</DisclosureButton>
                 </MenuItem>
                 <MenuItem>
-                  <DisclosureButton key={"SignOut"} as={NavLink} to={"/logout"}className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">Sign out</DisclosureButton>
+                  <DisclosureButton key={"SignOut"} as={NavLink} onClick={signOut} className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">Sign out</DisclosureButton>
                 </MenuItem>
               </MenuItems>
             </Menu>
+            )}
           </div>
         </div>
       </div>
