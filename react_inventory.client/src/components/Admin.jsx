@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { getImageURLs, getImageUrlByTitle } from './Shared/Images';
 import { createInventoryItem } from '../helpers/InventoryItemApi';
+import Toast from './Shared/Toasts';
         
 export default function Admin() {
-    const { register, watch, reset, handleSubmit, formState: { errors } } = useForm();
+    const { register, watch, reset, handleSubmit } = useForm();
+    const [toastState, setToastState] = useState(false);
+    const [toastType, setToastType] = useState(null);
+    const [toastMessage, setToastMessage] = useState(null);
     const images = getImageURLs();
 
     const onSubmit = (data) => {
@@ -12,7 +16,17 @@ export default function Admin() {
         data.id = Math.random().toString(16).slice(4);
         createInventoryItem(data);
         reset();
+        setToastState(true);
+        setTimeout(resetToast, 3000);
+        setToastType("success");
+        setToastMessage("Item creato con successo!");
     };
+
+    function resetToast() {
+        setToastState(false);
+        setToastType(null);
+        setToastMessage(null);
+    }
 
     return (
         <section className="bg-gray-100 dark:bg-gray-900 min-h-[calc(100vh-64px)]">
@@ -55,7 +69,7 @@ export default function Admin() {
                                         <label key={index} className="cursor-pointer">
                                             <input type="radio" name="image" value={image.title} className="sr-only" {...register('category', { required: true })} />
                                             <div className="flex flex-col items-center">
-                                                <img width="50" height="50" src={image.href} alt={image.title} className={"w-12 h-12 rounded-full hover:scale-110 " + (watch("category") == image.title ? "border-2 border-gray-800 scale-110" : "")} />
+                                                <img width="50" height="50" src={image.href} alt={image.title} className={"w-12 h-12 rounded-full hover:scale-110 " + (watch("category") === image.title ? "border-2 border-gray-800 scale-110" : "")} />
                                                 <span className="text-xs font-medium text-gray-900 dark:text-white">{image.title}</span>
                                             </div>
                                         </label>
@@ -70,6 +84,7 @@ export default function Admin() {
                         </form>
                     </div>
                 </div>
+                <Toast show={toastState} type={toastType} message={toastMessage} />
             </div>
         </section>
     );
